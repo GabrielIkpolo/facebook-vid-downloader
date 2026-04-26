@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../domain/entities/video.dart';
+import '../providers/downloader_providers.dart';
+import '../providers/download_notifier.dart';
+
+class VideoFormatTile extends ConsumerWidget {
+  final VideoFormat format;
+
+  const VideoFormatTile({super.key, required this.format});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final resolution = format.resolution ?? 'Unknown Resolution';
+    final filesize = format.filesize != null
+        ? '${(format.filesize! / (1024 * 1024)).toStringAsFixed(2)} MB'
+        : 'Unknown Size';
+
+    return ListTile(
+      leading: const Icon(Icons.videocam),
+      title: Text('$resolution (${format.ext})'),
+      subtitle: Text('$filesize'),
+      trailing: const Icon(Icons.download),
+      onTap: () async {
+        final downloadNotifier = ref.read(downloadNotifierProvider.notifier);
+        final downloadService = ref.read(downloadServiceProvider);
+
+        // Create a filename based on resolution or just use a default if not available
+        final fileName = 'video_${format.formatId}.${format.ext}';
+
+        await downloadNotifier.startDownload(
+          url: format.url,
+          fileName: fileName,
+          downloadService: downloadService,
+        );
+
+        // After starting, we might want to show a snackbar or navigate to a progress screen.
+        // For now, let's just show a snackbar.
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Download process initiated')),
+        );
+      },
+    );
+  }
+}
