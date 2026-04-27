@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../presentation/providers/downloader_providers.dart';
 import '../../presentation/providers/downloader_notifier.dart';
 import 'selection_screen.dart';
+import '../../../features/history/presentation/screens/history_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -44,6 +45,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         title: const Text('FB Video Downloader'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: () {
+              final currentMode = ref.read(themeModeProvider);
+              ref.read(themeModeProvider.notifier).state =
+                  currentMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const HistoryScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

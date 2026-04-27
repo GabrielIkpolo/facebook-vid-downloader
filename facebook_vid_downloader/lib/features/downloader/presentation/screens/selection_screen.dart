@@ -43,7 +43,7 @@ class SelectionScreen extends ConsumerWidget {
               itemCount: video.formats.length,
               itemBuilder: (context, index) {
                 final format = video.formats[index];
-                return VideoFormatTile(format: format);
+                return VideoFormatTile(video: video, format: format);
               },
             ),
           ),

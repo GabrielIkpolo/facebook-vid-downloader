@@ -5,9 +5,10 @@ import '../providers/downloader_providers.dart';
 import '../providers/download_notifier.dart';
 
 class VideoFormatTile extends ConsumerWidget {
+  final Video video;
   final VideoFormat format;
 
-  const VideoFormatTile({super.key, required this.format});
+  const VideoFormatTile({super.key, required this.video, required this.format});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,8 +30,8 @@ class VideoFormatTile extends ConsumerWidget {
         final fileName = 'video_${format.formatId}.${format.ext}';
 
         await downloadNotifier.startDownload(
-          url: format.url,
-          fileName: fileName,
+          video: video,
+          format: format,
           downloadService: downloadService,
         );
 
