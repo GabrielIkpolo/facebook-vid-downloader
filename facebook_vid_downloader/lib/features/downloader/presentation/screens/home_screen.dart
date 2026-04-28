@@ -51,9 +51,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.brightness_6),
             onPressed: () {
-              final currentMode = ref.read(themeModeProvider);
-              ref.read(themeModeProvider.notifier).state =
-                  currentMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+              ref.read(themeModeProvider.notifier).toggleTheme();
             },
           ),
           IconButton(
