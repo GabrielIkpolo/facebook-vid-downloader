@@ -210,8 +210,8 @@ return $default(_that.title,_that.thumbnailUrl,_that.formats);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _VideoModel implements VideoModel {
-  const _VideoModel({required this.title, @JsonKey(name: 'thumbnail') required this.thumbnailUrl, @JsonKey(name: 'formats') required final  List<VideoFormatModel> formats}): _formats = formats;
+class _VideoModel extends VideoModel {
+  const _VideoModel({required this.title, @JsonKey(name: 'thumbnail') required this.thumbnailUrl, @JsonKey(name: 'formats') required final  List<VideoFormatModel> formats}): _formats = formats,super._();
   factory _VideoModel.fromJson(Map<String, dynamic> json) => _$VideoModelFromJson(json);
 
 @override final  String title;
@@ -487,8 +487,8 @@ return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesi
 /// @nodoc
 @JsonSerializable()
 
-class _VideoFormatModel implements VideoFormatModel {
-  const _VideoFormatModel({@JsonKey(name: 'format_id') required this.formatId, required this.ext, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'resolution') this.resolution, @JsonKey(name: 'filesize') this.filesize});
+class _VideoFormatModel extends VideoFormatModel {
+  const _VideoFormatModel({@JsonKey(name: 'format_id') required this.formatId, required this.ext, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'resolution') this.resolution, @JsonKey(name: 'filesize') this.filesize}): super._();
   factory _VideoFormatModel.fromJson(Map<String, dynamic> json) => _$VideoFormatModelFromJson(json);
 
 @override@JsonKey(name: 'format_id') final  String formatId;

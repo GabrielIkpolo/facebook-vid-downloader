@@ -4,7 +4,9 @@ part 'video_model.freezed.dart';
 part 'video_model.g.dart';
 
 @freezed
-class VideoModel with _$VideoModel {
+abstract class VideoModel with _$VideoModel {
+  const VideoModel._();
+
   const factory VideoModel({
     required String title,
     @JsonKey(name: 'thumbnail') required String thumbnailUrl,
@@ -15,7 +17,9 @@ class VideoModel with _$VideoModel {
 }
 
 @freezed
-class VideoFormatModel with _$VideoFormatModel {
+abstract class VideoFormatModel with _$VideoFormatModel {
+  const VideoFormatModel._();
+
   const factory VideoFormatModel({
     @JsonKey(name: 'format_id') required String formatId,
     required String ext,
