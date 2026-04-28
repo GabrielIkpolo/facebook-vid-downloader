@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/download_status.dart';
-import '../../domain/services/download_service.dart';
-import '../../domain/entities/video.dart';
-import '../../../../features/history/presentation/providers/history_providers.dart';
-import '../../../../features/history/data/models/download_history_model.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/download_status.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/services/download_service.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/video.dart';
+import 'package:facebook_vid_downloader/features/history/presentation/providers/history_providers.dart';
+import 'package:facebook_vid_downloader/features/history/data/models/download_history_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'dart:io';

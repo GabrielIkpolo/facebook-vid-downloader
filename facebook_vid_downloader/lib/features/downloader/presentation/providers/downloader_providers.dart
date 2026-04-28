@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/datasources/video_remote_datasource.dart';
-import '../../data/repositories/video_repository_impl.dart';
-import '../../domain/repositories/video_repository.dart';
-import '../../data/services/download_service_impl.dart';
-import '../../domain/services/download_service.dart';
+import 'package:facebook_vid_downloader/features/downloader/data/datasources/video_remote_datasource.dart';
+import 'package:facebook_vid_downloader/features/downloader/data/repositories/video_repository_impl.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/repositories/video_repository.dart';
+import 'package:facebook_vid_downloader/features/downloader/data/services/download_service_impl.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/services/download_service.dart';
 
 // Constants
 const String kBaseUrl = 'http://localhost:3000';

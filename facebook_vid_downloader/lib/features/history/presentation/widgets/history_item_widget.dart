@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/download_history.dart';
-import '../../presentation/providers/history_providers.dart';
+import 'package:facebook_vid_downloader/features/history/domain/entities/download_history.dart';
+import 'package:facebook_vid_downloader/features/history/presentation/providers/history_providers.dart';
 import 'package:intl/intl.dart';
 
 class HistoryItemWidget extends ConsumerWidget {

@@ -1,7 +1,7 @@
-import '../../domain/entities/download_history.dart';
-import '../../domain/repositories/history_repository.dart';
-import '../../data/models/download_history_model.dart';
-import '../../../core/database_helper.dart';
+import 'package:facebook_vid_downloader/features/history/domain/entities/download_history.dart';
+import 'package:facebook_vid_downloader/features/history/domain/repositories/history_repository.dart';
+import 'package:facebook_vid_downloader/features/history/data/models/download_history_model.dart';
+import 'package:facebook_vid_downloader/core/database_helper.dart';
 
 class HistoryRepositoryImpl implements HistoryRepository {
   final DatabaseHelper dbHelper;
@@ -11,7 +11,18 @@ class HistoryRepositoryImpl implements HistoryRepository {
   @override
   Future<void> saveDownload(DownloadHistory history) async {
     final db = await dbHelper.database;
-    await db.insert('download_history', history.toMap());
+    // Convert entity to model to use toMap()
+    final model = DownloadHistoryModel(
+      id: history.id,
+      title: history.title,
+      url: history.url,
+      filePath: history.filePath,
+      downloadDate: history.downloadDate,
+      format: history.format,
+      resolution: history.resolution,
+      filesize: history.filesize,
+    );
+    await db.insert('download_history', model.toMap());
   }
 
   @override
@@ -21,7 +32,7 @@ class HistoryRepositoryImpl implements HistoryRepository {
 
     return List.generate(maps.length, (i) {
       final map = maps[i];
-      return DownloadHistory.fromMap(map);
+      return DownloadHistoryModel.fromMap(map);
     });
   }
 

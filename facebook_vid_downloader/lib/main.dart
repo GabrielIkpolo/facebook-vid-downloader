@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:facebook_vid_downloader/core/theme_provider.dart';
 import 'features/downloader/presentation/screens/home_screen.dart';
-
-// Theme Mode Provider
-final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.light);
 
 void main() {
   runApp(

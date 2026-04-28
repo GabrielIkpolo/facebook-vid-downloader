@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/video.dart';
-import '../../domain/repositories/video_repository.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/video.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/repositories/video_repository.dart';
 
 class DownloaderNotifier extends AsyncNotifier<Video?> {
   @override

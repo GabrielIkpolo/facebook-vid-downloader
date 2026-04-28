@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/video.dart';
-import '../providers/downloader_providers.dart';
-import '../providers/download_notifier.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/video.dart';
+import 'package:facebook_vid_downloader/features/downloader/presentation/providers/downloader_providers.dart';
+import 'package:facebook_vid_downloader/features/downloader/presentation/providers/download_notifier.dart';
 
 class VideoFormatTile extends ConsumerWidget {
   final Video video;

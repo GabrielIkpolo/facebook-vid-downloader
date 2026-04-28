@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/video.dart';
-import '../../domain/entities/download_status.dart';
-import '../providers/download_notifier.dart';
-import '../widgets/video_format_tile.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/video.dart';
+import 'package:facebook_vid_downloader/features/downloader/domain/entities/download_status.dart';
+import 'package:facebook_vid_downloader/features/downloader/presentation/providers/download_notifier.dart';
+import 'package:facebook_vid_downloader/features/downloader/presentation/widgets/video_format_tile.dart';
 
 class SelectionScreen extends ConsumerWidget {
   final Video video;
