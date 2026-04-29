@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:path_provider/path_provider.dart';
 import '../../domain/services/download_service.dart';
 
 class DownloadServiceImp implements DownloadService {

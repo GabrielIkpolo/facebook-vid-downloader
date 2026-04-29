@@ -26,17 +26,12 @@ class VideoFormatTile extends ConsumerWidget {
         final downloadNotifier = ref.read(downloadNotifierProvider.notifier);
         final downloadService = ref.read(downloadServiceProvider);
 
-        // Create a filename based on resolution or just use a default if not available
-        final fileName = 'video_${format.formatId}.${format.ext}';
-
         await downloadNotifier.startDownload(
           video: video,
           format: format,
           downloadService: downloadService,
         );
 
-        // After starting, we might want to show a snackbar or navigate to a progress screen.
-        // For now, let's just show a snackbar.
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Download process initiated')),
         );

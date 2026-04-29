@@ -61,6 +61,9 @@ class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
       );
       await historyRepository.saveDownload(historyModel);
 
+      // Invalidate history provider to refresh the list when user navigates to history screen
+      ref.invalidate(historyNotifierProvider);
+
       state = AsyncValue.data(DownloadStatus(
         state: DownloadState.completed,
         progress: 1.0,

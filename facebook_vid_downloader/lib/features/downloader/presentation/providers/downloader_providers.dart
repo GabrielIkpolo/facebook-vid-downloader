@@ -7,13 +7,14 @@ import 'package:facebook_vid_downloader/features/downloader/data/services/downlo
 import 'package:facebook_vid_downloader/features/downloader/domain/services/download_service.dart';
 
 // Constants
+// Note: For Android Emulator, use 'http://10.0.2.2:3000'
 const String kBaseUrl = 'http://localhost:3000';
 
 // Dio Provider
 final dioProvider = Provider<Dio>((ref) {
   return Dio(BaseOptions(
-    connectTimeout: const Duration(seconds: 10),
-    receiveTimeout: const Duration(seconds: 10),
+    connectTimeout: const Duration(seconds: 100),
+    receiveTimeout: const Duration(seconds: 100),
   ));
 });
 
