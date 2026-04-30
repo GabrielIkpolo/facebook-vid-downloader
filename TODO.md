@@ -34,7 +34,6 @@
 - [x] Add Dark Mode support
 - [x] Final Testing on Android 5.0+ and iOS
 
-## 🚀 Phase 5: Deployment
-- [ ] Dockerize Backend
-- [ ] Deploy Backend to VPS (DigitalOcean/AWS/etc)
-- [x] Build Flutter APK
+## 🛠️ Maintenance & Cleanup
+- [ ] Add .gitignore with project docs excluded
+- [ ] Implement public storage saving for Android/iOS (to make videos visible in Gallery)
