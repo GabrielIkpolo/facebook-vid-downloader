@@ -7,6 +7,7 @@ import 'package:facebook_vid_downloader/features/history/data/models/download_hi
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'dart:io';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
   @override
@@ -63,6 +64,18 @@ class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
 
       // Invalidate history provider to refresh the list when user navigates to history screen
       ref.invalidate(historyNotifierProvider);
+
+      // --- NEW: Save to Gallery for visibility ---
+      try {
+        final result = await ImageGallerySaver.saveFile(savePath);
+        if (result != null && result['isSuccess'] == false) {
+          print('Failed to save to gallery: ${result['errorMessage']}');
+          // We don't throw an error here because the download itself was successful, 
+          // just the "visibility" part failed.
+        }
+      } catch (e) {
+        print('Error saving to gallery: $e');
+      }
 
       state = AsyncValue.data(DownloadStatus(
         state: DownloadState.completed,

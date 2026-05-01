@@ -15,7 +15,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VideoModel {
 
- String get title;@JsonKey(name: 'thumbnail') String get thumbnailUrl;@JsonKey(name: 'formats') List<VideoFormatModel> get formats;
+ String get title;// ignore: invalid_annotation_target
+@JsonKey(name: 'thumbnail') String get thumbnailUrl;// ignore: invalid_annotation_target
+@JsonKey(name: 'formats') List<VideoFormatModel> get formats;
 /// Create a copy of VideoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -215,8 +217,11 @@ class _VideoModel extends VideoModel {
   factory _VideoModel.fromJson(Map<String, dynamic> json) => _$VideoModelFromJson(json);
 
 @override final  String title;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'thumbnail') final  String thumbnailUrl;
+// ignore: invalid_annotation_target
  final  List<VideoFormatModel> _formats;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'formats') List<VideoFormatModel> get formats {
   if (_formats is EqualUnmodifiableListView) return _formats;
   // ignore: implicit_dynamic_type
@@ -290,7 +295,11 @@ as List<VideoFormatModel>,
 /// @nodoc
 mixin _$VideoFormatModel {
 
-@JsonKey(name: 'format_id') String get formatId; String get ext;@JsonKey(name: 'url') String get url;@JsonKey(name: 'resolution') String? get resolution;@JsonKey(name: 'filesize') int? get filesize;
+// ignore: invalid_annotation_target
+@JsonKey(name: 'format_id') String get formatId; String get ext;// ignore: invalid_annotation_target
+@JsonKey(name: 'url') String get url;// ignore: invalid_annotation_target
+@JsonKey(name: 'resolution') String? get resolution;// ignore: invalid_annotation_target
+@JsonKey(name: 'filesize') int? get filesize;@JsonKey(name: 'is_combined') bool get isCombined;
 /// Create a copy of VideoFormatModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -303,16 +312,16 @@ $VideoFormatModelCopyWith<VideoFormatModel> get copyWith => _$VideoFormatModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoFormatModel&&(identical(other.formatId, formatId) || other.formatId == formatId)&&(identical(other.ext, ext) || other.ext == ext)&&(identical(other.url, url) || other.url == url)&&(identical(other.resolution, resolution) || other.resolution == resolution)&&(identical(other.filesize, filesize) || other.filesize == filesize));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoFormatModel&&(identical(other.formatId, formatId) || other.formatId == formatId)&&(identical(other.ext, ext) || other.ext == ext)&&(identical(other.url, url) || other.url == url)&&(identical(other.resolution, resolution) || other.resolution == resolution)&&(identical(other.filesize, filesize) || other.filesize == filesize)&&(identical(other.isCombined, isCombined) || other.isCombined == isCombined));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,formatId,ext,url,resolution,filesize);
+int get hashCode => Object.hash(runtimeType,formatId,ext,url,resolution,filesize,isCombined);
 
 @override
 String toString() {
-  return 'VideoFormatModel(formatId: $formatId, ext: $ext, url: $url, resolution: $resolution, filesize: $filesize)';
+  return 'VideoFormatModel(formatId: $formatId, ext: $ext, url: $url, resolution: $resolution, filesize: $filesize, isCombined: $isCombined)';
 }
 
 
@@ -323,7 +332,7 @@ abstract mixin class $VideoFormatModelCopyWith<$Res>  {
   factory $VideoFormatModelCopyWith(VideoFormatModel value, $Res Function(VideoFormatModel) _then) = _$VideoFormatModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'format_id') String formatId, String ext,@JsonKey(name: 'url') String url,@JsonKey(name: 'resolution') String? resolution,@JsonKey(name: 'filesize') int? filesize
+@JsonKey(name: 'format_id') String formatId, String ext,@JsonKey(name: 'url') String url,@JsonKey(name: 'resolution') String? resolution,@JsonKey(name: 'filesize') int? filesize,@JsonKey(name: 'is_combined') bool isCombined
 });
 
 
@@ -340,14 +349,15 @@ class _$VideoFormatModelCopyWithImpl<$Res>
 
 /// Create a copy of VideoFormatModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? formatId = null,Object? ext = null,Object? url = null,Object? resolution = freezed,Object? filesize = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? formatId = null,Object? ext = null,Object? url = null,Object? resolution = freezed,Object? filesize = freezed,Object? isCombined = null,}) {
   return _then(_self.copyWith(
 formatId: null == formatId ? _self.formatId : formatId // ignore: cast_nullable_to_non_nullable
 as String,ext: null == ext ? _self.ext : ext // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,resolution: freezed == resolution ? _self.resolution : resolution // ignore: cast_nullable_to_non_nullable
 as String?,filesize: freezed == filesize ? _self.filesize : filesize // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,isCombined: null == isCombined ? _self.isCombined : isCombined // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -432,10 +442,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize, @JsonKey(name: 'is_combined')  bool isCombined)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VideoFormatModel() when $default != null:
-return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize);case _:
+return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize,_that.isCombined);case _:
   return orElse();
 
 }
@@ -453,10 +463,10 @@ return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize, @JsonKey(name: 'is_combined')  bool isCombined)  $default,) {final _that = this;
 switch (_that) {
 case _VideoFormatModel():
-return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize);case _:
+return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize,_that.isCombined);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -473,10 +483,10 @@ return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'format_id')  String formatId,  String ext, @JsonKey(name: 'url')  String url, @JsonKey(name: 'resolution')  String? resolution, @JsonKey(name: 'filesize')  int? filesize, @JsonKey(name: 'is_combined')  bool isCombined)?  $default,) {final _that = this;
 switch (_that) {
 case _VideoFormatModel() when $default != null:
-return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize);case _:
+return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesize,_that.isCombined);case _:
   return null;
 
 }
@@ -488,14 +498,19 @@ return $default(_that.formatId,_that.ext,_that.url,_that.resolution,_that.filesi
 @JsonSerializable()
 
 class _VideoFormatModel extends VideoFormatModel {
-  const _VideoFormatModel({@JsonKey(name: 'format_id') required this.formatId, required this.ext, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'resolution') this.resolution, @JsonKey(name: 'filesize') this.filesize}): super._();
+  const _VideoFormatModel({@JsonKey(name: 'format_id') required this.formatId, required this.ext, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'resolution') this.resolution, @JsonKey(name: 'filesize') this.filesize, @JsonKey(name: 'is_combined') this.isCombined = false}): super._();
   factory _VideoFormatModel.fromJson(Map<String, dynamic> json) => _$VideoFormatModelFromJson(json);
 
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'format_id') final  String formatId;
 @override final  String ext;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'url') final  String url;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'resolution') final  String? resolution;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'filesize') final  int? filesize;
+@override@JsonKey(name: 'is_combined') final  bool isCombined;
 
 /// Create a copy of VideoFormatModel
 /// with the given fields replaced by the non-null parameter values.
@@ -510,16 +525,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideoFormatModel&&(identical(other.formatId, formatId) || other.formatId == formatId)&&(identical(other.ext, ext) || other.ext == ext)&&(identical(other.url, url) || other.url == url)&&(identical(other.resolution, resolution) || other.resolution == resolution)&&(identical(other.filesize, filesize) || other.filesize == filesize));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideoFormatModel&&(identical(other.formatId, formatId) || other.formatId == formatId)&&(identical(other.ext, ext) || other.ext == ext)&&(identical(other.url, url) || other.url == url)&&(identical(other.resolution, resolution) || other.resolution == resolution)&&(identical(other.filesize, filesize) || other.filesize == filesize)&&(identical(other.isCombined, isCombined) || other.isCombined == isCombined));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,formatId,ext,url,resolution,filesize);
+int get hashCode => Object.hash(runtimeType,formatId,ext,url,resolution,filesize,isCombined);
 
 @override
 String toString() {
-  return 'VideoFormatModel(formatId: $formatId, ext: $ext, url: $url, resolution: $resolution, filesize: $filesize)';
+  return 'VideoFormatModel(formatId: $formatId, ext: $ext, url: $url, resolution: $resolution, filesize: $filesize, isCombined: $isCombined)';
 }
 
 
@@ -530,7 +545,7 @@ abstract mixin class _$VideoFormatModelCopyWith<$Res> implements $VideoFormatMod
   factory _$VideoFormatModelCopyWith(_VideoFormatModel value, $Res Function(_VideoFormatModel) _then) = __$VideoFormatModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'format_id') String formatId, String ext,@JsonKey(name: 'url') String url,@JsonKey(name: 'resolution') String? resolution,@JsonKey(name: 'filesize') int? filesize
+@JsonKey(name: 'format_id') String formatId, String ext,@JsonKey(name: 'url') String url,@JsonKey(name: 'resolution') String? resolution,@JsonKey(name: 'filesize') int? filesize,@JsonKey(name: 'is_combined') bool isCombined
 });
 
 
@@ -547,14 +562,15 @@ class __$VideoFormatModelCopyWithImpl<$Res>
 
 /// Create a copy of VideoFormatModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? formatId = null,Object? ext = null,Object? url = null,Object? resolution = freezed,Object? filesize = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? formatId = null,Object? ext = null,Object? url = null,Object? resolution = freezed,Object? filesize = freezed,Object? isCombined = null,}) {
   return _then(_VideoFormatModel(
 formatId: null == formatId ? _self.formatId : formatId // ignore: cast_nullable_to_non_nullable
 as String,ext: null == ext ? _self.ext : ext // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,resolution: freezed == resolution ? _self.resolution : resolution // ignore: cast_nullable_to_non_nullable
 as String?,filesize: freezed == filesize ? _self.filesize : filesize // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,isCombined: null == isCombined ? _self.isCombined : isCombined // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

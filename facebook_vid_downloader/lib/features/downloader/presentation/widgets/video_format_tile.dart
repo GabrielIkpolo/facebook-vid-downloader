@@ -18,9 +18,11 @@ class VideoFormatTile extends ConsumerWidget {
         : 'Unknown Size';
 
     return ListTile(
-      leading: const Icon(Icons.videocam),
+      leading: Icon(format.isCombined ? Icons.videocam : Icons.videocam_outlined),
       title: Text('$resolution (${format.ext})'),
-      subtitle: Text('$filesize'),
+      subtitle: Text(
+        '${filesize}${format.isCombined ? " • Video + Audio" : ""}',
+      ),
       trailing: const Icon(Icons.download),
       onTap: () async {
         final downloadNotifier = ref.read(downloadNotifierProvider.notifier);

@@ -16,6 +16,7 @@ class VideoFormat {
   final String url;
   final String? resolution;
   final int? filesize;
+  final bool isCombined;
 
   const VideoFormat({
     required this.formatId,
@@ -23,5 +24,6 @@ class VideoFormat {
     required this.url,
     this.resolution,
     this.filesize,
+    this.isCombined = false,
   });
 }

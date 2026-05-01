@@ -22,6 +22,7 @@ class VideoRepositoryImpl implements VideoRepository {
         url: f.url,
         resolution: f.resolution,
         filesize: f.filesize,
+        isCombined: f.isCombined,
       )).toList(),
     );
   }

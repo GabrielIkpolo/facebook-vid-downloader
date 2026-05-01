@@ -32,6 +32,7 @@ abstract class VideoFormatModel with _$VideoFormatModel {
     @JsonKey(name: 'resolution') String? resolution,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'filesize') int? filesize,
+    @Default(false) @JsonKey(name: 'is_combined') bool isCombined,
   }) = _VideoFormatModel;
 
   factory VideoFormatModel.fromJson(Map<String, dynamic> json) => _$VideoFormatModelFromJson(json);

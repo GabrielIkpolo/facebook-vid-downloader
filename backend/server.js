@@ -60,6 +60,20 @@ app.get('/extract', async (req, res) => {
     }
 
     const metadata = JSON.parse(stdout);
+
+    // Process formats to prioritize combined (video + audio) streams
+    if (metadata.formats && Array.isArray(metadata.formats)) {
+      metadata.formats = metadata.formats.map(format => ({
+        ...format,
+        // A format is "combined" if it has both video and audio codecs
+        is_combined: !!(format.vcodec && format.vcodec !== 'none' && 
+                        format.acodec && format.acodec !== 'none')
+      }));
+
+      // Sort so combined formats come first
+      metadata.formats.sort((a, b) => (b.is_combined ? 1 : 0) - (a.is_combined ? 1 : 0));
+    }
+
     res.json(metadata);
   } catch (error) {
     console.error('Extraction error:', error);

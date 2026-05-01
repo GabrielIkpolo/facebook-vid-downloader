@@ -28,6 +28,7 @@ _VideoFormatModel _$VideoFormatModelFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String,
       resolution: json['resolution'] as String?,
       filesize: (json['filesize'] as num?)?.toInt(),
+      isCombined: json['is_combined'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$VideoFormatModelToJson(_VideoFormatModel instance) =>
@@ -37,4 +38,5 @@ Map<String, dynamic> _$VideoFormatModelToJson(_VideoFormatModel instance) =>
       'url': instance.url,
       'resolution': instance.resolution,
       'filesize': instance.filesize,
+      'is_combined': instance.isCombined,
     };
