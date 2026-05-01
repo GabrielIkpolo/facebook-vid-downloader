@@ -9,8 +9,10 @@ import 'package:facebook_vid_downloader/features/downloader/domain/services/down
 
 // Constants
 // IMPORTANT FOR PRODUCTION DEPLOYMENT:
-// When you deploy to Render, replace this URL with your Render service URL (e.g., https://your-app.onrender.com)
-const String kBaseUrl = 'http://localhost:3000'; // Change this for production!
+// When you deploy to Render, replace this URL with your Render service URL (e.g., https://facebook-vid-downloader.onrender.com)
+
+// const String kBaseUrl = 'http://localhost:3000'; // Change this for production!
+const String kBaseUrl = 'https://facebook-vid-downloader.onrender.com';
 
 // Dio Provider
 final dioProvider = Provider<Dio>((ref) {
