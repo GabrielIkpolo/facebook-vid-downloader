@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart'; // Added for kDebugMode
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:facebook_vid_downloader/features/downloader/data/datasources/video_remote_datasource.dart';
 import 'package:facebook_vid_downloader/features/downloader/data/repositories/video_repository_impl.dart';
@@ -7,8 +8,9 @@ import 'package:facebook_vid_downloader/features/downloader/data/services/downlo
 import 'package:facebook_vid_downloader/features/downloader/domain/services/download_service.dart';
 
 // Constants
-// Note: For Android Emulator, use 'http://10.0.2.2:3000'
-const String kBaseUrl = 'http://localhost:3000';
+// IMPORTANT FOR PRODUCTION DEPLOYMENT:
+// When you deploy to Render, replace this URL with your Render service URL (e.g., https://your-app.onrender.com)
+const String kBaseUrl = 'http://localhost:3000'; // Change this for production!
 
 // Dio Provider
 final dioProvider = Provider<Dio>((ref) {
