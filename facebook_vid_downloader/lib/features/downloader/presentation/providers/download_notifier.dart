@@ -7,7 +7,7 @@ import 'package:facebook_vid_downloader/features/history/data/models/download_hi
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'dart:io';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:gal/gal.dart';
 
 class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
   @override
@@ -67,11 +67,13 @@ class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
 
       // --- NEW: Save to Gallery for visibility ---
       try {
-        final result = await ImageGallerySaver.saveFile(savePath);
-        if (result != null && result['isSuccess'] == false) {
-          print('Failed to save to gallery: ${result['errorMessage']}');
-          // We don't throw an error here because the download itself was successful, 
-          // just the "visibility" part failed.
+        if (format.ext.toLowerCase() == 'mp4' || 
+            format.ext.toLowerCase() == 'mov' || 
+            format.ext.toLowerCase() == 'mkv' ||
+            format.ext.toLowerCase() == 'webm') {
+          await Gal.putVideo(savePath);
+        } else {
+          await Gal.putImage(savePath);
         }
       } catch (e) {
         print('Error saving to gallery: $e');
