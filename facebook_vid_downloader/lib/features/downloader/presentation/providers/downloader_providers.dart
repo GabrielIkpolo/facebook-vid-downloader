@@ -7,12 +7,16 @@ import 'package:facebook_vid_downloader/features/downloader/domain/repositories/
 import 'package:facebook_vid_downloader/features/downloader/data/services/download_service_impl.dart';
 import 'package:facebook_vid_downloader/features/downloader/domain/services/download_service.dart';
 
-// Constants
-// IMPORTANT FOR PRODUCTION DEPLOYMENT:
-// When you deploy to Render, replace this URL with your Render service URL (e.g., https://facebook-vid-downloader.onrender.com)
-
-// const String kBaseUrl = 'http://localhost:3000'; // Change this for production!
-const String kBaseUrl = 'https://facebook-vid-downloader.onrender.com';
+// Base URL Provider
+// Automatically switches between local development and production environments
+final baseUrlProvider = Provider<String>((ref) {
+  if (kDebugMode) {
+    // Use localhost for desktop/web debug. 
+    // Note: If testing on Android Emulator, you might need 'http://10.0.2.2:3000'
+    return 'http://localhost:3000';
+  }
+  return 'https://facebook-vid-downloader.onrender.com';
+});
 
 // Dio Provider
 final dioProvider = Provider<Dio>((ref) {
@@ -25,9 +29,10 @@ final dioProvider = Provider<Dio>((ref) {
 // Remote Data Source Provider
 final videoRemoteDataSourceProvider = Provider<VideoRemoteDataSource>((ref) {
   final dio = ref.watch(dioProvider);
+  final baseUrl = ref.watch(baseUrlProvider);
   return VideoRemoteDataSourceImpl(
     dio: dio,
-    baseUrl: kBaseUrl,
+    baseUrl: baseUrl,
   );
 });
 
