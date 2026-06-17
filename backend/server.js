@@ -50,10 +50,17 @@ app.get('/extract', async (req, res) => {
   try {
     console.log(`Extracting metadata for: ${url}`);
     
-    // Using --dump-json to get all available metadata in a structured format.
-    // We wrap the URL in double quotes to handle potential spaces, 
-    // although our validation should have stripped anything dangerous.
-    const { stdout, stderr } = await execPromise(`yt-dlp --dump-json --extractor-args "youtube:player-client=android,web,ios" "${url}"`);
+    // Construct the yt-dlp command
+    let command = `yt-dlp --dump-json --extractor-args "youtube:player-client=android,web,ios"`;
+    
+    // If a cookies file is provided via environment variable, use it to bypass data center blocks
+    if (process.env.YOUTUBE_COOKIES_PATH) {
+      command += ` --cookies "${process.env.YOUTUBE_COOKIES_PATH}"`;
+    }
+
+    command += ` "${url}"`;
+    
+    const { stdout, stderr } = await execPromise(command);
     
     if (stderr && !stdout) {
       return res.status(500).json({ error: 'Error from yt-dlp', details: stderr });
