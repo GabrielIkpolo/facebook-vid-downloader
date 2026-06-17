@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 # Install yt-dlp globally using curl
 RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp \
     && chmod a+rx /usr/local/bin/yt-dlp
@@ -18,11 +21,11 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files first to leverage Docker cache for npm install
-COPY package*.json ./
+# Copy package files and lockfile first to leverage Docker cache
+COPY package.json pnpm-lock.yaml ./
 
-# Install production dependencies only (to keep image small)
-RUN npm ci --omit=dev
+# Install production dependencies only using pnpm
+RUN pnpm install --prod
 
 # Copy the rest of your application code
 COPY . .

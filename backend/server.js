@@ -53,7 +53,7 @@ app.get('/extract', async (req, res) => {
     // Using --dump-json to get all available metadata in a structured format.
     // We wrap the URL in double quotes to handle potential spaces, 
     // although our validation should have stripped anything dangerous.
-    const { stdout, stderr } = await execPromise(`yt-dlp --dump-json --extractor-args "youtube:player-client=android,web" "${url}"`);
+    const { stdout, stderr } = await execPromise(`yt-dlp --dump-json --extractor-args "youtube:player-client=android,web,ios" "${url}"`);
     
     if (stderr && !stdout) {
       return res.status(500).json({ error: 'Error from yt-dlp', details: stderr });
