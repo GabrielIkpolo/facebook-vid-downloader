@@ -1,4 +1,4 @@
-enum DownloadState { idle, downloading, completed, error }
+enum DownloadState { idle, initiating, downloading, completed, error }
 
 class DownloadStatus {
   final DownloadState state;

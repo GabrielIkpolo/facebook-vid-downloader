@@ -29,12 +29,17 @@ class SelectionScreen extends ConsumerWidget {
               errorBuilder: (context, error, stackTrace) =>
                   const Icon(Icons.broken_image, size: 100),
             ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              video.title,
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 120),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  video.title,
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
           ),
           const Divider(),
@@ -49,6 +54,13 @@ class SelectionScreen extends ConsumerWidget {
           ),
           if (downloadState.hasValue)
             _DownloadStatusWidget(status: downloadState.value!),
+          const Padding(
+            padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Text(
+              'powered by GIKPS',
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+          ),
         ],
       ),
     );
@@ -75,6 +87,11 @@ class _DownloadStatusWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (status.state == DownloadState.initiating) ...[
+            const Text('Initiating download...'),
+            const SizedBox(height: 8),
+            const CircularProgressIndicator(),
+          ],
           if (status.state == DownloadState.downloading) ...[
             const Text('Downloading...'),
             const SizedBox(height: 8),

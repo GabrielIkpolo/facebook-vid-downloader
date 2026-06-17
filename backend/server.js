@@ -15,13 +15,13 @@ app.use(express.json());
 const execPromise = promisify(exec);
 
 /**
- * Validates if the provided URL is a valid Facebook URL.
+ * Validates if the provided URL is a valid video URL (Facebook or YouTube).
  * This is a crucial security step to prevent command injection.
  */
-const isValidFacebookUrl = (url) => {
-  // Basic regex to ensure it's a facebook.com URL
-  const fbRegex = /^https?:\/\/(www\.)?facebook\.com\/.*$/;
-  return fbRegex.test(url);
+const isValidVideoUrl = (url) => {
+  // Basic regex to ensure it's a facebook.com or youtube.com URL
+  const videoRegex = /^https?:\/\/(www\.)?(facebook\.com|youtube\.com|youtu\.be)\/.*$/;
+  return videoRegex.test(url);
 };
 
 /**
@@ -39,8 +39,8 @@ app.get('/extract', async (req, res) => {
     return res.status(400).json({ error: 'URL is required' });
   }
 
-  if (!isValidFacebookUrl(url)) {
-    return res.status(400).json({ error: 'Invalid Facebook URL. Please provide a valid Facebook link.' });
+  if (!isValidVideoUrl(url)) {
+    return res.status(400).json({ error: 'Invalid video URL. Please provide a valid Facebook or YouTube link.' });
   }
 
   if (hasShellMetacharacters(url)) {
@@ -53,7 +53,7 @@ app.get('/extract', async (req, res) => {
     // Using --dump-json to get all available metadata in a structured format.
     // We wrap the URL in double quotes to handle potential spaces, 
     // although our validation should have stripped anything dangerous.
-    const { stdout, stderr } = await execPromise(`yt-dlp --dump-json "${url}"`);
+    const { stdout, stderr } = await execPromise(`yt-dlp --dump-json --extractor-args "youtube:player-client=android,web" "${url}"`);
     
     if (stderr && !stdout) {
       return res.status(500).json({ error: 'Error from yt-dlp', details: stderr });

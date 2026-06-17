@@ -45,7 +45,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FB Video Downloader'),
+        title: const Text('Video Downloader'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -76,8 +76,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             TextField(
               controller: _urlController,
               decoration: const InputDecoration(
-                labelText: 'Facebook Video URL',
-                hintText: 'https://www.facebook.com/watch/?v=...',
+                labelText: 'Video URL (Facebook or YouTube)',
+                hintText: 'https://www.facebook.com/watch/?v=... or https://www.youtube.com/watch?v=...',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.url,
@@ -109,6 +109,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: const TextStyle(color: Colors.red),
                 ),
               ),
+            const Spacer(),
+            const Padding(
+              padding: EdgeInsets.only(top: 16.0, bottom: 8.0),
+              child: Text(
+                'powered by GIKPS',
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              ),
+            ),
           ],
         ),
       ),

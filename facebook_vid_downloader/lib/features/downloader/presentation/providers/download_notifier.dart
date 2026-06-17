@@ -20,7 +20,7 @@ class DownloadNotifier extends AsyncNotifier<DownloadStatus> {
     required VideoFormat format,
     required DownloadService downloadService,
   }) async {
-    state = const AsyncValue.data(DownloadStatus(state: DownloadState.downloading));
+    state = const AsyncValue.data(DownloadStatus(state: DownloadState.initiating));
 
     try {
       // Get directory to save file
